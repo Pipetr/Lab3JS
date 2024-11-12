@@ -1,5 +1,8 @@
 class ToyCar {
-    constructor(brand, model, series, manufacturer, scale, color, features, material, dimensions, price, inStock = true, year = 2001) {
+    constructor(brand, model, series, manufacturer, scale, 
+        color, features, material, dimensions, price, inStock = true, year = 2001,
+        image
+    ) {
         this.brand = brand;
         this.model = model;
         this.series = series;
@@ -12,10 +15,13 @@ class ToyCar {
         this.price = price;
         this.inStock = inStock;
         this.year = year;
+        this.image = image;
+        
     }
 
 
     displayDetails() {
+        this.setImage(this.image);
         document.getElementById('carName').textContent = `${this.brand} ${this.model}`;
         document.getElementById('carDescription').textContent = `A collectible ${this.series} series car from ${this.year} at a scale of ${this.scale}.`;
         const carProperties = document.getElementById('carProperties');
@@ -28,7 +34,21 @@ class ToyCar {
         <li>Dimensions: ${this.dimensions}</li>
         <li>In Stock: ${this.inStock ? 'Yes' : 'No'}</li>
     `; 
-    
+        return carProperties.innerHTML;
+    }
+
+    setImage(image) {
+        const imageContainer = document.getElementById('carImage');
+        // clean the container to avoid multiple images
+        imageContainer.innerHTML = '';
+        const carImage = document.createElement('img');
+        carImage.setAttribute('src', image);
+        imageContainer.appendChild(carImage);
+    }
+
+    displayCarCard() {
+        document.getElementById('carProperties').innerHTML = this.displayDetails();
+        this.setImage('');
     }
 }
 
@@ -40,20 +60,84 @@ const johnnysS2000 = new ToyCar(
     "Jada Toys",
     "1/32",
     "Black",
-    "Openable doors",
+    ["Openable doors"," Detailed interior"," Rubber tires"],
     "Diecast metal with some plastic parts",
     "5\"L x 2\"W x 1.75\"H",
     9.99,
     true,
-    2003
+    2003,
+    './image/Johnnys-Honda-S2000-Convertible.jpg'
 );
 
-console.log(johnnysS2000.displayDetails());
+const toyotaSupra = new ToyCar(
+    "Toyota",
+    "Supra",
+    "Fast & Furious",
+    "Jada Toys",
+    "1/32",
+    "Orange",
+    ["Openable doors"," Detailed interior"," Rubber tires"],
+    "Diecast metal with some plastic parts",
+    "5\"L x 2\"W x 1.75\"H",
+    9.99,
+    true,
+    2003,
+    './image/JADA-FF-1995-Toyota-Supra.jpg'
+);
 
+const ShawnsMcLaren = new ToyCar(
+    "McLaren",
+    "720S",
+    "Fast & Furious",
+    "Jada Toys",
+    "1/32",
+    "Silver",
+    ["Openable doors"," Detailed interior"," Rubber tires"],
+    "Diecast metal with some plastic parts",
+    "5\"L x 2\"W x 1.75\"H",
+    9.99,
+    true,
+    2003,
+    './image/Shaws-McLaren-720S.jpg'
+);
 
-document.getElementById('carDetails').innerHTML = johnnysS2000.displayDetails();
+johnnysS2000.displayDetails();
+
+const carName = document.getElementById('carName').textContent;
+let car;
 
 function modifyPrice() {
-    johnnysS2000.price = prompt("Enter new price:", johnnysS2000.price);
-    document.getElementById('carDetails').innerHTML = johnnysS2000.displayDetails();
+    // Get the car object that is currently displayed
+    
+    if (carName.includes('Honda')) {
+        car = johnnysS2000;
+    } else if (carName.includes('Toyota')) {
+        car = toyotaSupra;
+    } else {
+        car = ShawnsMcLaren;
+    }
+    car.price = prompt("Enter new price:", car.price);
+    document.getElementById('carDetails').innerHTML = car.displayDetails();
 }
+
+function chageColor() {
+    johnnysS2000.color = prompt("Enter new color:", car.color);
+    document.getElementById('carDetails').innerHTML = car.displayDetails();
+}
+
+let count = 0;
+function nextCar(){
+    
+    const cars = [johnnysS2000, toyotaSupra, ShawnsMcLaren];
+    if(count < cars.length - 1){
+        count++;
+    } else {
+        count = 0;
+    }
+    car = cars[count];
+    car.displayDetails();
+}
+
+document.getElementById('changePrice').addEventListener('click', modifyPrice);
+document.getElementById('changeColor').addEventListener('click', chageColor);
+document.getElementById('nextCar').addEventListener('click', nextCar);
