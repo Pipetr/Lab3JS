@@ -1,5 +1,5 @@
 class ToyCar {
-    constructor(brand, model, series, manufacturer, scale, color, features, material, dimensions, price) {
+    constructor(brand, model, series, manufacturer, scale, color, features, material, dimensions, price, inStock = true, year = 2001) {
         this.brand = brand;
         this.model = model;
         this.series = series;
@@ -10,21 +10,25 @@ class ToyCar {
         this.material = material;
         this.dimensions = dimensions;
         this.price = price;
+        this.inStock = inStock;
+        this.year = year;
     }
 
+
     displayDetails() {
-        return `
-            Brand: ${this.brand}
-            Model: ${this.model}
-            Series: ${this.series}
-            Manufacturer: ${this.manufacturer}
-            Scale: ${this.scale}
-            Color: ${this.color}
-            Features: ${this.features}
-            Material: ${this.material}
-            Dimensions: ${this.dimensions}
-            Price: $${this.price}
-        `;
+        document.getElementById('carName').textContent = `${this.brand} ${this.model}`;
+        document.getElementById('carDescription').textContent = `A collectible ${this.series} series car from ${this.year} at a scale of ${this.scale}.`;
+        const carProperties = document.getElementById('carProperties');
+        carProperties.innerHTML = `
+        <li>Color: ${this.color}</li>
+        <li>Manufacturer: ${this.manufacturer}</li>
+        <li>Price: $${this.price}</li>
+        <li>Features: ${this.features.join(', ')}</li>
+        <li>Materials: ${this.material}</li>
+        <li>Dimensions: ${this.dimensions}</li>
+        <li>In Stock: ${this.inStock ? 'Yes' : 'No'}</li>
+    `; 
+    
     }
 }
 
@@ -39,7 +43,9 @@ const johnnysS2000 = new ToyCar(
     "Openable doors",
     "Diecast metal with some plastic parts",
     "5\"L x 2\"W x 1.75\"H",
-    9.99
+    9.99,
+    true,
+    2003
 );
 
 console.log(johnnysS2000.displayDetails());

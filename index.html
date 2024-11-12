@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Toy Car Display</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
-    <div class="car-container">
-        <h1>Johnny's Honda S2000 Convertible</h1>
-        <div class="car-details" id="carDetails"></div>
-        <button onclick="modifyPrice()">Modify Price</button>
+    <h1>Toy Car Showcase</h1>
+    <div id="carDisplay">
+        <h2 id="carName"></h2>
+        <p id="carDescription"></p>
+        <button onclick="changeColor()">Change Car Color</button>
+        <ul id="carProperties"></ul>
     </div>
 
     <script src="js/index.js" defer> </script>
 </body>
+
 </html>
