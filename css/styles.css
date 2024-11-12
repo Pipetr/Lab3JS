@@ -1,35 +1,40 @@
+/* Styling body */
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f5;
     text-align: center;
-  }
-  
-  #carDisplay {
+}
+
+/* Styling form */
+#carDisplay {
     margin-top: 20px;
     padding: 15px;
     border: 1px solid #ccc;
     display: inline-block;
     width: 300px;
     background: #fff;
-  }
-  
-  h1 {
+}
+/* h1 */
+h1 {
     color: #333;
-  }
-  
-  button {
+}
+
+/* Button style */
+button {
     padding: 8px 12px;
     background-color: #4CAF50;
     color: white;
     border: none;
     cursor: pointer;
-  }
-  
-  button:hover {
+}
+
+/* Button hover effect */
+button:hover {
     background-color: #45a049;
-  }
-  
-  img{
+}
+
+/* Styling images */
+img {
     width: auto;
     height: 70px;
-  }
+}

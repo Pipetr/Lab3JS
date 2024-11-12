@@ -1,5 +1,6 @@
+/* Class toy car */
 class ToyCar {
-    constructor(brand, model, series, manufacturer, scale, 
+    constructor(brand, model, series, manufacturer, scale,
         color, features, material, dimensions, price, inStock = true, year = 2001,
         image
     ) {
@@ -16,10 +17,10 @@ class ToyCar {
         this.inStock = inStock;
         this.year = year;
         this.image = image;
-        
+
     }
 
-
+    // Display the details of the car
     displayDetails() {
         this.setImage(this.image);
         document.getElementById('carName').textContent = `${this.brand} ${this.model}`;
@@ -33,10 +34,10 @@ class ToyCar {
         <li>Materials: ${this.material}</li>
         <li>Dimensions: ${this.dimensions}</li>
         <li>In Stock: ${this.inStock ? 'Yes' : 'No'}</li>
-    `; 
+    `;
         return carProperties.innerHTML;
     }
-
+    // Set the image of the car
     setImage(image) {
         const imageContainer = document.getElementById('carImage');
         // clean the container to avoid multiple images
@@ -45,7 +46,7 @@ class ToyCar {
         carImage.setAttribute('src', image);
         imageContainer.appendChild(carImage);
     }
-
+    // Display the car card
     displayCarCard() {
         document.getElementById('carProperties').innerHTML = this.displayDetails();
         this.setImage('');
@@ -60,7 +61,7 @@ const johnnysS2000 = new ToyCar(
     "Jada Toys",
     "1/32",
     "Black",
-    ["Openable doors"," Detailed interior"," Rubber tires"],
+    ["Openable doors", " Detailed interior", " Rubber tires"],
     "Diecast metal with some plastic parts",
     "5\"L x 2\"W x 1.75\"H",
     9.99,
@@ -69,6 +70,7 @@ const johnnysS2000 = new ToyCar(
     './image/Johnnys-Honda-S2000-Convertible.jpg'
 );
 
+// Create an instance of the ToyCar
 const toyotaSupra = new ToyCar(
     "Toyota",
     "Supra",
@@ -76,7 +78,7 @@ const toyotaSupra = new ToyCar(
     "Jada Toys",
     "1/32",
     "Orange",
-    ["Openable doors"," Detailed interior"," Rubber tires"],
+    ["Openable doors", " Detailed interior", " Rubber tires"],
     "Diecast metal with some plastic parts",
     "5\"L x 2\"W x 1.75\"H",
     9.99,
@@ -85,6 +87,7 @@ const toyotaSupra = new ToyCar(
     './image/JADA-FF-1995-Toyota-Supra.jpg'
 );
 
+// Create an instance of the ToyCar
 const ShawnsMcLaren = new ToyCar(
     "McLaren",
     "720S",
@@ -92,7 +95,7 @@ const ShawnsMcLaren = new ToyCar(
     "Jada Toys",
     "1/32",
     "Silver",
-    ["Openable doors"," Detailed interior"," Rubber tires"],
+    ["Openable doors", " Detailed interior", " Rubber tires"],
     "Diecast metal with some plastic parts",
     "5\"L x 2\"W x 1.75\"H",
     9.99,
@@ -101,8 +104,10 @@ const ShawnsMcLaren = new ToyCar(
     './image/Shaws-McLaren-720S.jpg'
 );
 
+// Display the details of the car
 johnnysS2000.displayDetails();
 
+// Getting the car object based on the car name
 let car;
 function getCar() {
     const carName = document.getElementById('carName').textContent;
@@ -116,6 +121,7 @@ function getCar() {
     return car;
 }
 
+// Modify the price of the car
 function modifyPrice() {
     // Get the car object that is currently displayed
     car = getCar();
@@ -129,11 +135,12 @@ function chageColor() {
     document.getElementById('carDetails').innerHTML = car.displayDetails();
 }
 
+// Change the car to the next car
 let count = 0;
-function nextCar(){
-    
+function nextCar() {
+
     const cars = [johnnysS2000, toyotaSupra, ShawnsMcLaren];
-    if(count < cars.length - 1){
+    if (count < cars.length - 1) {
         count++;
     } else {
         count = 0;
@@ -142,6 +149,8 @@ function nextCar(){
     car.displayDetails();
 }
 
+
+// Event listeners
 document.getElementById('changePrice').addEventListener('click', modifyPrice);
 document.getElementById('changeColor').addEventListener('click', chageColor);
 document.getElementById('nextCar').addEventListener('click', nextCar);
