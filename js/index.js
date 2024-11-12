@@ -103,12 +103,9 @@ const ShawnsMcLaren = new ToyCar(
 
 johnnysS2000.displayDetails();
 
-const carName = document.getElementById('carName').textContent;
 let car;
-
-function modifyPrice() {
-    // Get the car object that is currently displayed
-    
+function getCar() {
+    const carName = document.getElementById('carName').textContent;
     if (carName.includes('Honda')) {
         car = johnnysS2000;
     } else if (carName.includes('Toyota')) {
@@ -116,12 +113,19 @@ function modifyPrice() {
     } else {
         car = ShawnsMcLaren;
     }
+    return car;
+}
+
+function modifyPrice() {
+    // Get the car object that is currently displayed
+    car = getCar();
     car.price = prompt("Enter new price:", car.price);
     document.getElementById('carDetails').innerHTML = car.displayDetails();
 }
 
 function chageColor() {
-    johnnysS2000.color = prompt("Enter new color:", car.color);
+    car = getCar();
+    car.color = prompt("Enter new color:", car.color);
     document.getElementById('carDetails').innerHTML = car.displayDetails();
 }
 
